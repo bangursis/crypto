@@ -6,6 +6,7 @@ import (
 	"crypto/sha1"
 )
 
+//SignScp11 signs the command sent
 func SignScp11(command []byte, tag byte, macKey []byte, chainingIn []byte) (signed []byte, chainingOut []byte) {
 	// add chaining
 	dataToSign := append(command, chainingIn...)
@@ -19,6 +20,7 @@ func SignScp11(command []byte, tag byte, macKey []byte, chainingIn []byte) (sign
 	return signed, chainingOut
 }
 
+//EncryptScp11 encrypts the command send
 func EncryptScp11(commandID byte, command []byte, encKey []byte) (encrypted []byte) {
 	// pad the data
 	command = paddingISO9797Method2(command)
